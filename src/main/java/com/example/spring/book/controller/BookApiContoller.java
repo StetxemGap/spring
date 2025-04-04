@@ -36,5 +36,8 @@ public class BookApiContoller {
         return bookService.create(request.getName(), request.getDescription());
     }
 
-
+    @PutMapping("/api/v1/book/{id}")
+    public BookEntity edit(@PathVariable Integer id, @RequestBody BookEntity request){
+        return bookService.edit(request).orElseThrow(ResourceNotFoundException::new);
+    }
 }
