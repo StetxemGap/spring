@@ -3,9 +3,7 @@ package com.example.spring.book.controller;
 import com.example.spring.base.exception.ResourceNotFoundException;
 import com.example.spring.book.entity.BookEntity;
 import com.example.spring.book.service.BookService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,4 +30,11 @@ public class BookApiContoller {
     public BookEntity byId(@PathVariable Integer id){
         return bookService.byId(id).orElseThrow(ResourceNotFoundException::new);
     }
+
+    @PostMapping("/api/v1/book")
+    public BookEntity create(@RequestBody BookEntity request){
+        return bookService.create(request.getName(), request.getDescription());
+    }
+
+
 }
